@@ -7,6 +7,14 @@
 <body>
   <marquee><img src="heart.png" width=50></img><font face="굴림">안녕하세요. 제 첫 홈피에 오신걸 환영합니다~~</font><img src="heart.png" width=50></img><br></marquee>
   <h1><a href="index.html">WEB</a></h1>
+  <input type="button" value="night" onclick="
+    document.querySelector('body').style.backgroundColor='black';
+    document.querySelector('body').style.color='white';
+  ">
+  <input type="button" value="day" onclick="
+    document.querySelector('body').style.backgroundColor='white';
+    document.querySelector('body').style.color='black';
+  ">
   <ol>
     <li><a href="1.html">HTML</a></li>
     <li><a href="2.html">CSS</a></li>
