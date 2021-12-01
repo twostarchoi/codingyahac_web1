@@ -1,26 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    </head>
-    <body>
-        <h1>JavaScript Handlers</h1>
-		<!-- Add this line -->
-		<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
-		<script src="main.dart.js" type="application/javascript"></script>
-        <script>
-            window.addEventListener("flutterInAppWebViewPlatformReady", function(event) {
-                window.flutter_inappwebview.callHandler('handlerFoo')
-                  .then(function(result) {
-                    // print to the console the data coming
-                    // from the Flutter side.
-                    console.log(JSON.stringify(result));
-                    
-                    window.flutter_inappwebview
-                      .callHandler('handlerFooWithArgs', 1, true, ['bar', 5], {foo: 'baz'}, result);
-                });
-            });
-        </script>
-    </body>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebMessageChannel Test</title>
+</head>
+<body>
+    <!-- when you click this button, it will send a message to the Dart side -->
+    <button id="button" onclick="port.postMessage(input.value);" />Send</button>
+    <br />
+    <input id="input" type="text" value="JavaScript To Native" />
+    
+    <script>
+      // variable that will represents the port used to communicate with the Dart side
+      var port;
+      // listen for messages
+      window.addEventListener('message', function(event) {
+          if (event.data == 'capturePort') {
+              // capture port2 coming from the Dart side
+              if (event.ports[0] != null) {
+                  // the port is ready for communication,
+                  // so you can use port.postMessage(message); wherever you want
+                  port = event.ports[0];
+                  // To listen to messages coming from the Dart side, set the onmessage event listener
+                  port.onmessage = function (event) {
+                      // event.data contains the message data coming from the Dart side 
+                      console.log(event.data);
+                  };
+              }
+          }
+      }, false);
+    </script>
+</body>
 </html>
