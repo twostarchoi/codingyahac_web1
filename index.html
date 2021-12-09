@@ -1,34 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebMessageChannel Test</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="script.js"></script>
 </head>
 <body>
-    <!-- when you click this button, it will send a message to the Dart side -->
-    <button id="button" onclick="port.postMessage(input.value);" />Send</button>
-    <br />
-    <input id="input" type="text" value="JavaScript To Native" />
-    
-    <script>
-      // variable that will represents the port used to communicate with the Dart side
-      var port;
-      // listen for messages
-      window.addEventListener('message', function(event) {
-          if (event.data == 'capturePort') {
-              // capture port2 coming from the Dart side
-              if (event.ports[0] != null) {
-                  // the port is ready for communication,
-                  // so you can use port.postMessage(message); wherever you want
-                  port = event.ports[0];
-                  // To listen to messages coming from the Dart side, set the onmessage event listener
-                  port.onmessage = function (event) {
-                      // event.data contains the message data coming from the Dart side 
-                      console.log(event.data);
-                  };
-              }
-          }
-      }, false);
-    </script>
+  <button id="btnBarcode" style="margin-top:20px; height:30px;">Scan Barcode</button>
 </body>
 </html>
